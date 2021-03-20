@@ -9,6 +9,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "user_name",nullable = false,length = 50,unique = true)
+    private String userName;
+
     @Column(name = "first_name",nullable = false,length = 50)
     private String firstName;
 
@@ -20,7 +23,8 @@ public class User {
 
     }
 
-    public User( String firstName, String lastName) {
+    public User(String userName,String firstName, String lastName) {
+        this.userName=userName;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -49,6 +53,14 @@ public class User {
         this.lastName = lastName;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -57,4 +69,6 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 '}';
     }
+
+
 }

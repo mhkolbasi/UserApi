@@ -1,5 +1,6 @@
 package com.example.backend.dto;
 
+import com.example.backend.valid.UniqueUserName;
 import org.hibernate.annotations.BatchSize;
 
 import javax.validation.constraints.NotNull;
@@ -14,6 +15,11 @@ public class UserCreateDTO {
     @NotNull(message = "{backend.constraints.lastName.NotNull.message}")
     @Size(min = 2,max = 30,message = "{backend.constraints.lastName.Size.message}")
     private String lastName;
+
+    @NotNull(message = "{backend.constraints.userName.NotNull.message}")
+    @Size(min = 4,max = 30,message = "{backend.constraints.lastName.Size.message}")
+    @UniqueUserName
+    private String userName;
 
     public UserCreateDTO(){
 
@@ -38,5 +44,13 @@ public class UserCreateDTO {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
