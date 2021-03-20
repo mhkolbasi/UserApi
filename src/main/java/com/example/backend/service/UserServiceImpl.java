@@ -7,6 +7,7 @@ import com.example.backend.exception.NotFoundException;
 import com.example.backend.model.User;
 import com.example.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,6 +60,12 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         final User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Found Exception2 "));
         userRepository.deleteById(user.getId());
+    }
+
+    @Override
+    @Transactional(readOnly = true,propagation = Propagation.SUPPORTS)
+    public List<UserViewDTO> slice(Pageable pageable) {
+        return userRepository.findAll(pageable).stream().map(UserViewDTO::of).collect(Collectors.toList());
     }
 
 }

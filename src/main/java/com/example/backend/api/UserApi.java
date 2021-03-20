@@ -7,6 +7,7 @@ import com.example.backend.dto.UserViewDTO;
 import com.example.backend.service.UserService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,5 +54,13 @@ public class UserApi {
         userService.deleteUser(id);
         return ResponseEntity.ok(new GenericResponce("User DELETED"));
     }
+
+    @GetMapping("v1/user/slice")
+    public ResponseEntity<List<UserViewDTO>> slice(Pageable pageable){
+    final List<UserViewDTO> users = userService.slice(pageable);
+        return ResponseEntity.ok(users);
+    }
+
+
 
 }
