@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.print.DocFlavor;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -39,7 +40,7 @@ public class UserApi {
     }
 
     @PostMapping("v1/user")
-    public ResponseEntity<?> createUser(@RequestBody UserCreateDTO userCreateDTO){
+    public ResponseEntity<?> createUser(@Valid @RequestBody UserCreateDTO userCreateDTO){
         userService.createUser(userCreateDTO);
         return ResponseEntity.ok(new GenericResponce("User Created"));
     }

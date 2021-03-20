@@ -1,9 +1,13 @@
 package com.example.backend.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class UserUpdateDTO {
 
+    @NotNull(message = "{backend.constraints.firstName.NotNull.message}")
     private String firstName;
 
+    @NotNull(message = "{backend.constraints.lastName.NotNull.message}")
     private String lastName;
 
     public UserUpdateDTO(){
