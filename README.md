@@ -1,3 +1,4 @@
-# UserApi
+# UserApiBackend
 
-Technology: Spring Boot,Spring Data Jpa,H2,Rest Api
+Technology: Spring Boot,Spring Data,H2,Rest Api
+Pattern: DAO,DTO
